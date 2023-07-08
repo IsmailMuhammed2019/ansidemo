@@ -10,3 +10,10 @@ all:
     node03: 
       ansible_host: node03
       ansible_user: root
+
+  children:
+    webServers:
+      node01:
+      node02:
+    dbServers:
+      node3:
