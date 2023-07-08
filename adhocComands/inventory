@@ -1,0 +1,6 @@
+all:
+  hosts:
+    node01: 
+      ansible_host: node01
+      ansible_user: root
+      ansible_ssh_private_key: authorized_key.pem
