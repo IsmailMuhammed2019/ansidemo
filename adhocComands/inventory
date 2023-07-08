@@ -17,3 +17,6 @@ all:
       node02:
     dbServers:
       node3:
+    originServers:
+      webServers:
+      dbServers:
