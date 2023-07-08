@@ -14,7 +14,7 @@ all:
         node02:
     dbServers:
       hosts:
-        node3:
+        node03:
     originServers:
       children:
         webServers:
