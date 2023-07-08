@@ -4,10 +4,8 @@ all:
       ansible_host: node01
     node02: 
       ansible_host: node02
-      ansible_user: root
     node03: 
       ansible_host: node03
-      ansible_user: root
 
   children:
     webServers:
@@ -18,7 +16,7 @@ all:
       hosts:
         node3:
     originServers:
-      hosts:
+      children:
         webServers:
         dbServers:
       vars:
