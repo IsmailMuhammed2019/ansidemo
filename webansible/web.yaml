@@ -17,5 +17,5 @@
 
     - name: Copy file with owner and permissions
       ansible.builtin.copy:
-        src: webansible/files/index.html
+        src: files/index.html
         dest: /var/www/
