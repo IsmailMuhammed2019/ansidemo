@@ -15,11 +15,7 @@
         state: started
         enabled: yes
 
-- name: dbServer setup
-  hosts: dbServers
-  become: yes
-  tasks:
-    - name: Install mariadb-server
-      ansible.builtin.yum:
-        name: mariadb-server
-        state: present
+    - name: Copy file with owner and permissions
+      ansible.builtin.copy:
+        src: webansible/files/index.html
+        dest: /var/www/
