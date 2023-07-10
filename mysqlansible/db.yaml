@@ -1,39 +1,32 @@
 ---
-
-- name: dbServer setup
-  hosts: dbServers
+- name: Setup DBserver
+  hosts: dbsrvgrp
   become: yes
   tasks:
-    - name: Install mariadb-server
-      ansible.builtin.yum:
-        name: mariadb-server
-        state: present
+    - name: Install MySQL server
+      yum:
+         name: mariadb-server
+         state: present
+         
+    - name: Install Python MySQL 
+      yum:
+         name: MySQL-python
+         state: present
 
-    - name: Install pymysql
-      ansible.builtin.yum:
-        name: python3-PyMySQL
-        state: present
-
-    - name: Install python2 pymysql
-      ansible.builtin.yum:
-        name: python-PyMySQL
-        state: present
-
-    - name: Start Mariadb service
-      ansible.builtin.service:
-        name: mariadb
-        state: started
-        enabled: yes
+    - name: Start & Enable maridb service
+      service:
+         name: mariadb
+         state: started
+         enabled: yes
 
     - name: Create a new database with name 'accounts'
-      community.mysql.mysql_db:
+      mysql_db:
         name: accounts
         state: present
-        login_unix_socket: /var/lib/mysql/mysql.sock
 
-    - name: Create database user with name 'vprofile'
-      community.mysql.mysql_db:
-        name: 'vprofile'
-        password: 'admin123'
-        priv: '*.*: ALL'
+    - name: Create database user with name 'admin' 
+      mysql_user:
+        name: admin
+        password: 12345
+        priv: '*.*:ALL'
         state: present
